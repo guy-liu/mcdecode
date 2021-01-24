@@ -3,6 +3,8 @@ import requests as req
 import argparse
 import re
 import os
+import json
+from urllib.parse import urlparse
 
 config_file = os.environ.get('HOME')+'/.mcdecode'
 program_info = 'Decodes the encoded URL created by MimeCast Targetted Threat Protection - URL Protect feature. ' \
@@ -95,9 +97,42 @@ if resp2.status_code != 307:
 
 url = resp2.headers['Location']
 
-if re.match('^https://.+mimecast\.com/.+enrollment\?key=.*', url) is not None:
+# Received device enrollment page
+if re.match('^https://.+mimecast\.com/.+enrollment\?key=.*', url):
     print('ERROR: URL decode failed. Ensure a valid cookie is specified.')
     exit()
+
+# Received email security training page, extract URL using API
+if re.match('^https://.+mimecast\.com/.+\?key=.*', url):
+
+    # Extract key
+    key = url[url.index('key=') + len('key='):]
+
+    if args.debug:
+        print('DEBUG: Received email security training page, using API method')
+        print('DEBUG: Extracted cacheKey: ' + key)
+
+    # Prepare API input
+    input = { 'data': [{'cacheKey':key, 'pageType':'user_challenge' }] }
+
+    # Determine API URL and Make API call
+    p = urlparse(url)
+    base_url = p.scheme + '://' + p.netloc
+    req3 = base_url + '/api/ttp/url/get-page-data'
+    resp3 = req.post(req3, cookies=cookies, data=json.dumps(input))
+
+    if args.debug:
+         print('DEBUG: Making API call to: ' + req3)
+         #print('DEBUG: Received response ' + resp3.text)
+
+    output = json.loads(resp3.text)
+
+    # Check response
+    if output['meta']['status'] != 200:
+        print('ERROR: API call unsuccessful.')
+        exit()
+
+    url = output['data'][0]['originalUrl']
 
 print(url)
 
