@@ -48,6 +48,23 @@ https://github.com/guy-liu/mcdecode
 ``` 
 You can also specify a different cookie (-c) as a one time value for testing, or in combination with the save cookie option (-s) to update the stored cookie in the config file. The config file is located at ~/.mcdecode 
 
+For more usage information, use the help option (-h)
+```
+$ ./mcdecode.py -h
+usage: mcdecode.py [-h] [--cookie COOKIE] [--save] --url URL [--debug]
+
+Decodes the encoded URL created by MimeCast Targetted Threat Protection - URL Protect feature. In order for URL to be decoded, a cookie from an enrolled browser needs
+to be specified via the command line or be stored in ~/.mcdecode
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --cookie COOKIE, -c COOKIE
+                        Cookie from an enrolled browser in the format of key=value
+  --save, -s            Save the specified cookie in ~/.mcdecode if URL is successfully decoded
+  --url URL, -u URL     Encoded URL
+  --debug               Output debug information
+
+```
 Enjoy. 
 
 [URL Protection]:https://community.mimecast.com/s/article/Targeted-Threat-Protection-URL-Protect-793832582
