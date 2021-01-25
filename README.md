@@ -37,10 +37,22 @@ No need to install. Simply download the python script and run. Requires python 3
 I wrote this on a Linux system, but this might run on Python 3 on Windows. If you have this working on Windows I would love to hear from you.
 
 ## Examples
+Run the first decode, specify the URL (-u) and also a valid authentication cookie from an enrolled browser (-c) and save the cookie in a config file for future use. Please do not use the cookie in the example as it is not a valid cookie. 
+```
+$ ./mcdecode.py -u https://protect-eu.mimecast.com/s/4YYXx3RhcsBNOrkmt5hm -c x-mc-ea-o40zr1n2e8198tnm83avpkel5p6hra53=8BAABklWQvuP8sqJ78k2_sU87dP6P31eu0bmFqgthqziyHZrwy_xWlZekXtPcSg0fGUNL_sU87dP-OcNFoQpEXLLDvwgJ1LEBAnaeliHj92u7tI6tgXqyRDLSel6RqAoIVRjGiKU7GqqMHFj1CFQcaLJKSN4HQxr2r9Ziu1t_c17TMZEIU4BoPZ_3YTUROFG -s
+https://github.com/guy-liu/mcdecode
+```
+The subsequent decodes only require the URL (-u).
+```
+$ ./mcdecode.py -u https://protect-eu.mimecast.com/s/4YYXx3RhcsBNOrkmt5hm 
+https://github.com/guy-liu/mcdecode
+``` 
+You can also specify a different cookie (-c) as a one time value for testing, or in combination with the save cookie option (-s) to update the stored cookie in the config file. The config file is located at ~/.mcdecode 
 
+Enjoy. 
 [URL Protection]:https://community.mimecast.com/s/article/Targeted-Threat-Protection-URL-Protect-793832582
 
 [API]:https://www.mimecast.com/tech-connect/documentation/endpoint-reference/targeted-threat-protection-url-protect/decode-url/
 
 [Preview URL]:https://community.mimecast.com/s/article/Targeted-Threat-Protection-Verifying-a-URL-621586565
-https://protect-eu.mimecast.com/s/aRiFCkZJmSQZo5h2iMzf?domain=github.com
+
