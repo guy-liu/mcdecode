@@ -2,7 +2,6 @@
 A simple python script to decode URLs created by the Mimecast URL Protection feature.
 
 ## Problem
-
 [URL Protection], part of the Mimecast Targetted Threat Protection email security product, offers end users an increased level of protection against malicious URLs embbed in emails. URLs in emails are replaced by unique URLs pointing to Mimecast servers, allowing various checks to be performed after a user has clicked on one of the links.
 
 The problem comes when a user wishes to retrieve the original URL without first visiting it. This is a common scenario for technical personnels. For example, a help desk technician might wish to investigate the hyperlinks embeded in a suspected spam email, or a cyber security analyst might wish to investigate a malware delivery email by following the link in a sandboxed environment. Mimecast provides several methods for decoding URLS but each presents its own challenges:
@@ -50,9 +49,9 @@ https://github.com/guy-liu/mcdecode
 You can also specify a different cookie (-c) as a one time value for testing, or in combination with the save cookie option (-s) to update the stored cookie in the config file. The config file is located at ~/.mcdecode 
 
 Enjoy. 
+
 [URL Protection]:https://community.mimecast.com/s/article/Targeted-Threat-Protection-URL-Protect-793832582
 
 [API]:https://www.mimecast.com/tech-connect/documentation/endpoint-reference/targeted-threat-protection-url-protect/decode-url/
 
 [Preview URL]:https://community.mimecast.com/s/article/Targeted-Threat-Protection-Verifying-a-URL-621586565
-
